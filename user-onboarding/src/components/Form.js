@@ -34,7 +34,7 @@ export default function Form(props){
     function onSubmit(event){
         event.preventDefault();
         axios.post('https://reqres.in/api/users', formData)
-            .then(res => {props.setUsers([ res.data, ...props.users]); setFormData(initialFormData);})
+            .then(res => {props.setUsers([ res.data, ...props.users]); setFormData(initialFormData); setFormErrors(initialFormErrors);})
             .catch(err => console.error(err));
     }
 
