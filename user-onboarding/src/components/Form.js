@@ -23,7 +23,8 @@ export default function Form(props){
 
     function onChange(event){
         const { type, name, checked, value } = event.target;
-        const data = type==='checkbox' ? checked : value.trim();
+        const newValue = name!=='name' ? value.trim() : value;
+        const data = type==='checkbox' ? checked : newValue;
         yup.reach(schema, name)
             .validate(data)
             .then(()=> setFormErrors({ ...formErrors, [name]: '' }))
@@ -33,7 +34,7 @@ export default function Form(props){
 
     function onSubmit(event){
         event.preventDefault();
-        axios.post('https://reqres.in/api/users', formData)
+        axios.post('https://reqres.in/api/users', { name: formData.name.trim(), ...formData })
             .then(res => {props.setUsers([ res.data, ...props.users]); setFormData(initialFormData); setFormErrors(initialFormErrors);})
             .catch(err => console.error(err));
     }
