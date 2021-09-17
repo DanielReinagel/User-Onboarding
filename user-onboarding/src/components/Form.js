@@ -53,10 +53,10 @@ export default function Form(props){
             <br/>
             <label><input type='submit' disabled={disabled}/></label>
             <div className='errors'>
-                <p style={{'color':'red'}}>{formErrors.name}</p>
-                <p style={{'color':'red'}}>{formErrors.email}</p>
-                <p style={{'color':'red'}}>{formErrors.password}</p>
-                <p style={{'color':'red'}}>{formErrors.toS}</p>
+                {formErrors.name && <p style={{'color':'red'}}>{formErrors.name}</p>}
+                {formErrors.email && <p style={{'color':'red'}}>{formErrors.email}</p>}
+                {formErrors.password && <p style={{'color':'red'}}>{formErrors.password}</p>}
+                {formErrors.toS && <p style={{'color':'red'}}>{formErrors.toS}</p>}
             </div>
         </form>
     );
